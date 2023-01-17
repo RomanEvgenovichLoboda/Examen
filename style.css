@@ -1,0 +1,16 @@
+.div__main{
+    position: relative;
+    display: flex;
+}
+.div__left{
+    position: relative;
+    float: left;
+    width: 25%;
+    background-color: #0a53be;
+}
+.div__right{
+    position: relative;
+    float: right;
+    width: 50%;
+    background-color: #0c4128;
+}
