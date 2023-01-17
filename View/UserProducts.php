@@ -17,9 +17,23 @@ include '../Controller/UserController.php';
         <div class="col-sm-3 border border-light p-2">
             <?php
             echo "<p>Hallo ".$_SESSION['user']." !!!</p>";
+            echo '<button type="submit" class="btn btn-outline-warning m-3 w-75 shadow" name="shop">Shopping</button>';
+            echo '<button type="submit" class="btn btn-outline-info m-3 w-75 shadow" name="edit">Edit Profile</button>';
+            echo '<button type="submit" class="btn btn-outline-danger m-3 w-75 shadow" name="exit">Exit</button>';
             if(isset($_POST['sbtn'])){
                 $searcP = trim(htmlspecialchars($_POST['sinp']));
                 SearchProduct($searcP,2);
+            }
+            if(isset($_POST['edit'])){
+                EditProfile($_SESSION['user']);
+            }
+            if(isset($_POST['save'])){
+                $id = intval($_POST['save']);
+                $pas = trim(htmlspecialchars($_POST['uspas']));
+                $tel = intval($_POST['ustel']);
+                $mail = trim(htmlspecialchars($_POST['usmail']));
+                $adr = trim(htmlspecialchars($_POST['usadr']));
+                UpdateProfile($id,$pas,$tel,$mail,$adr);
             }
             ?>
 
@@ -30,11 +44,10 @@ include '../Controller/UserController.php';
             if(isset($_POST['buy'])){
                 //echo "<script> location.href='../View/AddProduct.php'; </script>";
             }
+            if(isset($_POST['exit'])){
+                echo "<script> location.href='../View/StartPage.php'; </script>";
+            }
             else{
-              echo '<div class="input-group m-2 shadow">';
-              echo '<input class="form-control" name="sinp" placeholder="search" </input>';
-              echo '<button type="submit" name="sbtn" class="btn btn-outline-primary">Search</button>';
-              echo '</div>';
               SellectAll(2);
             }
 

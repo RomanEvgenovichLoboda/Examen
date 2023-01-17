@@ -19,10 +19,10 @@ include '../Controller/ProductController.php';
             <p><input type="text" name="header" class="form-control shadow" placeholder="Header" /></p>
             <p><input type="text" name="description" class="form-control shadow" placeholder="Description" /></p>
             <p></p>
-            <p><button type="submit" name="add" class="btn btn-outline-primary w-100 shadow"> Add </button></p>
+            <p><button type="submit" name="addProd" class="btn btn-outline-primary w-100 shadow"> Add </button></p>
         </div>
         <?php
-        if(isset($_POST['add'])) {
+        if(isset($_POST['addProd'])) {
 
 
             $name = trim(htmlspecialchars($_POST['name']));

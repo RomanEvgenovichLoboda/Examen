@@ -14,15 +14,20 @@ include '../Controller/UserController.php';
 <form method="post" action="#">
     <div class="row">
         <div class="col-sm-3 border border-light p-2">
-            <button type="submit"  class="btn btn-outline-info m-2 w-75 " name="atr">Autorization</button>
-            <button type="submit"  class="btn btn-outline-info m-2 w-75" name="rsr">Registration</button>
+            <button type="submit"  class="btn btn-outline-info m-2 w-75 shadow" name="atr">Autorization</button>
+            <button type="submit"  class="btn btn-outline-primary m-2 w-75 shadow" name="rsr">Registration</button>
+            <button type="submit"  class="btn btn-outline-warning m-2 w-75 shadow" name="adm">Administration</button>
             <?php
             if(isset($_POST['atr'])){
-                $_SESSION['isRegistr']=false;
+                $_SESSION['User']="aut";
                 echo "<script> location.href='../View/Registration.php'; </script>";
             }
             if(isset($_POST['rsr'])){
-                $_SESSION['isRegistr']=true;
+                $_SESSION['User']="reg";
+                echo "<script> location.href='../View/Registration.php'; </script>";
+            }
+            if(isset($_POST['adm'])){
+                $_SESSION['User']="adm";
                 echo "<script> location.href='../View/Registration.php'; </script>";
             }
             if(isset($_POST['sbtn'])){
@@ -39,10 +44,6 @@ include '../Controller/UserController.php';
 
             }
             else{
-                echo '<div class="input-group m-2 shadow">';
-                echo '<input class="form-control" name="sinp" placeholder="search" </input>';
-                echo '<button type="submit" name="sbtn" class="btn btn-outline-primary">Search</button>';
-                echo '</div>';
                 SellectAll();
             }
             ?>

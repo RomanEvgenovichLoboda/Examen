@@ -20,12 +20,19 @@ class User
     }
     public function Show()
     {
-        return "<div>
-                    <p>Hallo ".$this->login."</p>
-                 
-                </div>";
+        return "<p>Id - ".$this->id."</p>
+            <p>Name - ".$this->login."</p>
+            <p>Prc(grn) - ".$this->password."</p>
+            <p>eMail - ".$this->email."</p>
+            <p>Tel - ".$this->telephone."</p>
+            <p>Adr- ".$this->adress."</p>";
     }
-
+    public function Edit(){
+        return" <input class='w-100 form-control' name='uspas' value='".$this->password."'>Password</input>
+            <input type='number' class='w-100 form-control' name='ustel' value='".$this->telephone."'>Telephone</input>
+            <input class='w-100 form-control' name='usmail' value='".$this->email."'>eMail</input>
+            <input class='w-100 form-control' name='usadr' value='".$this->adress."'>Adress</input><p></p>";
+    }
 
     public function __destruct()
     {

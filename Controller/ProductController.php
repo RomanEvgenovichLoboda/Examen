@@ -8,6 +8,10 @@ function SellectAll($autor=0){
         echo 'Error';
     }
     else{
+        echo '<div class="input-group shadow">';
+        echo '<input class="form-control" name="sinp" placeholder="search" </input>';
+        echo '<button type="submit" name="sbtn" class="btn btn-outline-primary">Search</button>';
+        echo '</div>';
         $sql_code = "SELECT * FROM products";
         if($results=$conn->query($sql_code)){
             //$results = $conn->query($sql_code);
@@ -77,7 +81,7 @@ function EditProduct($edid){
                 $prod = new ProductModel($res["id"],$res["name"],$res["price"],$res["header"],$res["description"],$res["imagepath"]);
                 echo "<div class='card d-inline-block m-1 p-2 text-uppercase text-info font-monospace' style='width: 200px'>";
                 echo $prod->Edit();
-                echo "<button type='submit' class='btn btn-outline-primary w-50' name='edok' value='{$res["id"]}'>Ok</button>";
+                echo "<button type='submit' class='btn btn-outline-primary w-100' name='edok' value='{$res["id"]}'>Save</button>";
                 echo  "</div>";
             }
             $results->free();

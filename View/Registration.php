@@ -33,7 +33,16 @@ include '../Controller/UserController.php';
                 echo "Fill All Fields!";
             }
         }
-        if($_SESSION['isRegistr']){
+        if(isset($_POST['admin'])) {
+            $log = trim(htmlspecialchars($_POST['name']));
+            $pass=trim(htmlspecialchars($_POST['pas']));
+            if($log!=""&&$pass!=""){
+                if($log!="admin"&&$pass!="admin")echo"Wrong Data!";
+                else echo "<script> location.href='../View/AdminProd.php'; </script>";
+            }
+            else echo"Fill All Fields!";
+        }
+        if($_SESSION['User'] == "reg"){
             echo '<div class="card-header"><h4>Registration:</h4></div>';
             echo "<div class='card-body'>";
             echo '<p><input type="text" name="name" class="form-control shadow" placeholder="Name" /></p>';
@@ -43,13 +52,22 @@ include '../Controller/UserController.php';
             echo '<p><button type="submit" name="registr" class="btn btn-outline-primary w-100 shadow"> Ok </button></p>';
             echo "</div>";
         }
-        if(!$_SESSION['isRegistr']){
+        if($_SESSION['User'] == "aut"){
             echo '<div class="card-header"><h4>Autorisation:</h4></div>';
             echo "<div class='card-body'>";
             echo '<p><input type="text" name="name" class="form-control shadow" placeholder="Name" /></p>';
             echo '<p><input type="password" name="pas" class="form-control shadow" placeholder="password" /></p>';
             echo "<p></p>";
             echo '<p><button type="submit" name="autor" class=" btn btn-outline-primary w-100 shadow"> Ok </button></p>';
+            echo "</div>";
+        }
+        if($_SESSION['User'] == "adm"){
+            echo '<div class="card-header"><h4>Administration:</h4></div>';
+            echo "<div class='card-body'>";
+            echo '<p><input type="text" name="name" class="form-control shadow" placeholder="admin" /></p>';
+            echo '<p><input type="password" name="pas" class="form-control shadow" placeholder="admin" /></p>';
+            echo "<p></p>";
+            echo '<p><button type="submit" name="admin" class="btn btn-outline-primary w-100 shadow"> Ok </button></p>';
             echo "</div>";
         }
         ?>
