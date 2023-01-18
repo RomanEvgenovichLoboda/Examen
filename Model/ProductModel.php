@@ -1,9 +1,8 @@
-
 <?php
 
 class ProductModel
 {
-    protected $id;
+    public $id;
     protected $name;
     protected $price;
     protected $header;
@@ -67,26 +66,20 @@ class ProductModel
         return $this->imagepath;
     }
     public function ShowProduct(){
-//       return "<div class='d-inline-block' style='width: 200px'>
            return" <img class='card-img-top' src='../Images/".$this->imagepath."' style='height: 155px '></img>
-            <p>Id - ".$this->id."</p>
             <p>Name - ".$this->name."</p>
             <p>Prc(grn) - ".$this->price."</p>
             <p>Hdr - ".$this->header."</p>
-            <p>Dscrpt - ".$this->descriptions."</p>
-            <p>Path - ".$this->imagepath."</p>";
-//            </div>";
+            <p>Dscrpt - ".$this->descriptions."</p>";
+
     }
 
     public function Edit(){
-//       return "<div class='d-inline-block' style='width: 200px'>
         return" <img class='card-img-top' src='../Images/".$this->imagepath."' style='height: 155px '></img>
             <input class='w-100 form-control' name='okname' value='".$this->name."'>Name</input>
             <input type='number' class='w-100 form-control' name='okprc' value='".$this->price."'>Prc(hrn)</input>
             <input class='w-100 form-control' name='okhdr' value='".$this->header."'>Hdr</input>
             <input class='w-100 form-control' name='okdscr' value='".$this->descriptions."'>Dscrpt</input><p></p>";
-
-//            </div>";
     }
 
     public function __destruct()

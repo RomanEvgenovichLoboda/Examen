@@ -1,6 +1,4 @@
-
 <?php
-
 
 function SellectAll($autor=0){
     $conn = new mysqli("localhost","root","","mydb1");
@@ -8,6 +6,7 @@ function SellectAll($autor=0){
         echo 'Error';
     }
     else{
+        echo "<div class='d-flex w-100 justify-content-center text-bg-primary mb-3'><h3>Products</h3></div>";
         echo '<div class="input-group shadow">';
         echo '<input class="form-control" name="sinp" placeholder="search" </input>';
         echo '<button type="submit" name="sbtn" class="btn btn-outline-primary">Search</button>';
@@ -29,11 +28,8 @@ function SellectAll($autor=0){
             }
             $results->free();
             $conn->close();
-            //return $results;
         }
     }
-
-
 }
 function AddProduct($name,$price,$header,$description,$imagepath){
     $conn = new mysqli("localhost","root","","mydb1");
@@ -97,7 +93,6 @@ function SaveChanges($id,$name,$price,$header,$description){
     }
     else{
         $sql_code = 'UPDATE `products` SET `name` = "'.$name.'" , `price` ='.$price.',`header` = "'.$header.'",`description` = "'.$description.'" WHERE id = '.$id.'';
-        //$sql_code = 'INSERT INTO `products`(`name`,`price`,`header`,`description`) VALUES ("'.$name.'" , "'.$price.'", "'.$header.'", "'.$description.'") WHERE id = '.$id.' ';
         if(!$conn->query($sql_code)){
             echo '<p>Error</p>';
             exit;
@@ -129,4 +124,27 @@ function SearchProduct($nam,$autor=0){
         }
     }
 }
+function ShowBuys(){
 
+    $conn = new mysqli("localhost","root","","mydb1");
+    if($conn->connect_error){
+        echo 'Error';
+    }
+    else{
+        echo "<div class='d-flex w-100 justify-content-center text-bg-warning'><h3>Your Choice</h3></div>";
+        foreach ($_SESSION['userBuy'] as $res){
+            $sql_code = "SELECT * FROM products WHERE id = $res";
+            if($results=$conn->query($sql_code)){
+                foreach ($results as $res){
+                    $prod = new ProductModel($res["id"],$res["name"],$res["price"],$res["header"],$res["description"],$res["imagepath"]);
+                    echo "<div class='card bg-warning shadow d-inline-block m-2 p-2 text-uppercase text-info font-monospace' style='width: 200px'>";
+                    echo $prod->ShowProduct();
+                    echo "<button type='submit' class='btn btn-outline-danger w-100' name='delbuy' value='{$res["id"]}'>Remove</button>";
+                    echo  "</div>";
+                }
+                $results->free();
+            }
+        }
+        $conn->close();
+    }
+}

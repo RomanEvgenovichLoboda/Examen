@@ -38,20 +38,15 @@ include '../Controller/UserController.php';
                 SaveChanges($okid,$okname,$okprice,$okhdr,$okdscr);
                 SellectAll(1);
             }
-//            if(isset($_POST['autor'])){
-//                $log = trim(htmlspecialchars($_POST['name']));
-//                $pass=trim(htmlspecialchars($_POST['pas']));
-//                Autorisation($log,$pass);
-//            }
-            if(isset($_POST['sbtn'])){
+            else if(isset($_POST['sbtn'])){
                 $searcP = trim(htmlspecialchars($_POST['sinp']));
                 SearchProduct($searcP,1);
             }
-            if(isset($_POST['edbut'])){
+            else if(isset($_POST['edbut'])){
                 $edid = intval($_POST['edbut']);
                 EditProduct($edid);
             }
-            if(isset($_POST['edok'])){
+            else if(isset($_POST['edok'])){
                 $okid = intval($_POST['edok']);
                 $okname = trim(htmlspecialchars($_POST['okname']));
                 $okprice = intval($_POST['okprc']);
@@ -60,34 +55,38 @@ include '../Controller/UserController.php';
                 SaveChanges($okid,$okname,$okprice,$okhdr,$okdscr);
             }
             //SellectAll();
-            if(isset($_POST['delbut'])){
+            else if(isset($_POST['delbut'])){
                 $delid = intval($_POST['delbut']);
                 DelleteProduct($delid);
                 SellectAll(1);
             }
-            if(isset($_POST['delUs'])){
+            else if(isset($_POST['delUs'])){
                 $delid = intval($_POST['delUs']);
                 DelleteUser($delid);
                 ShowAllUsers();
             }
-            if(isset($_POST['add'])){
+            else if(isset($_POST['add'])){
                 echo "<script> location.href='../View/AddProduct.php'; </script>";
             }
-            if(isset($_POST['users'])){
+            else if(isset($_POST['users'])){
                 ShowAllUsers();
             }
-            if(isset($_POST['prod'])){
+            else if(isset($_POST['prod'])){
                 SellectAll(1);
             }
-            if(isset($_POST['addProd']))
+            else if(isset($_POST['addProd']))
             {
                 SellectAll(1);
             }
-            if(isset($_POST['exit']))
+            else if(isset($_POST['exit']))
             {
                 echo "<script> location.href='../View/StartPage.php'; </script>";
             }
+            else {
+                SellectAll(1);
+            }
             ?>
+
         </div>
     </div>
 </form>

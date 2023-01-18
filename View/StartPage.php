@@ -13,7 +13,7 @@ include '../Controller/UserController.php';
 <body>
 <form method="post" action="#">
     <div class="row">
-        <div class="col-sm-3 border border-light p-2">
+        <div class="col-sm-3 bg-dark p-2">
             <button type="submit"  class="btn btn-outline-info m-2 w-75 shadow" name="atr">Autorization</button>
             <button type="submit"  class="btn btn-outline-primary m-2 w-75 shadow" name="rsr">Registration</button>
             <button type="submit"  class="btn btn-outline-warning m-2 w-75 shadow" name="adm">Administration</button>

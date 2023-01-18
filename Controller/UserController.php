@@ -13,6 +13,7 @@ function Autorisation($log,$pas)
             foreach ($results as $res) {
                 if ($log == $res["login"] && $pas == $res["password"]) {
                     $_SESSION['user'] = $log;
+                    $_SESSION['userBuy'] =  array();
                     echo "<script> location.href='../View/UserProducts.php'; </script>";
                 }
             }
@@ -49,6 +50,7 @@ function ShowAllUsers(){
     } else {
         $sql_code = "SELECT * FROM users";
         if ($results = $conn->query($sql_code)) {
+            echo "<div class='d-flex w-100 justify-content-center text-bg-warning mb-3'><h3>Users</h3></div>";
             foreach ($results as $res) {
                 $user = new User($res["login"],$res["password"],$res["email"],$res["telephone"],$res["adress"],$res["id"]);
                 echo "<div class='card d-inline-block m-2 p-2 font-monospace shadow' style='width: 200px'>";
@@ -85,7 +87,7 @@ function EditProfile($log){
         if($results=$conn->query($sql_code)){
             foreach ($results as $res){
                 $user = new User($res["login"],$res["password"],$res["email"],$res["telephone"],$res["adress"],$res["id"]);
-                echo "<div class='card d-inline-block m-1 p-2 text-uppercase text-info font-monospace' style='width: 200px'>";
+                echo "<div class='card d-inline-block m-4 p-2 text-uppercase text-info font-monospace w-75'>";
                 echo $user->Edit();
                 echo "<button type='submit' class='btn btn-outline-primary w-100' name='save' value='{$res["id"]}'>Save</button>";
                 echo  "</div>";
