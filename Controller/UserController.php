@@ -31,15 +31,16 @@ function Registration($login,$password){
     }
     else{
         $sql_code = 'INSERT INTO `users`(`login`,`password`) VALUES ("'.$login.'" , "'.$password.'")';
-        if($conn->query($sql_code)){
+        try {$conn->query($sql_code);
+            $conn->close();
             echo '<p>Data added</p>';
             $_SESSION['User'] = "aut";
             echo "<script> location.href='../View/Registration.php'; </script>";
         }
-        else{
-            echo '<p>Data not added</p>';
-        }
-        $conn->close();
+        catch (Exception $e){
+            echo '<p>'.$e->getMessage().'</p>';
+            $conn->close();
+    }
 
     }
 }
